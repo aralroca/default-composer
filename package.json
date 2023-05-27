@@ -37,8 +37,6 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest ./tests --watch",
-    "lint": "eslint ./src",
-    "format": "eslint --fix ./src",
     "build": "microbundle",
     "dev": "microbundle watch",
     "prepublish": "yarn build"
