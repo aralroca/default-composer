@@ -1,4 +1,4 @@
-<div style="text-align:center">
+<div align="center">
 <img src="./logo.svg" alt="Default composer logo" width="100" height="100" />
 <h1>
 <div><b>Default composer</b></div>
