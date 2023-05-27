@@ -12,18 +12,14 @@ function compose(defaults, originalObject) {
   for (let key of allKeys) {
     const defaultsValue = defaults[key];
     const originalObjectValue = originalObject[key];
+    const hasDefault = key in defaults;
 
-    if (isEmpty(originalObjectValue) && key in defaults) {
+    if (isEmpty(originalObjectValue) && hasDefault) {
       result[key] = defaultsValue;
       continue;
     }
 
-    if (
-      typeof originalObjectValue === "object" &&
-      originalObjectValue !== null &&
-      !Array.isArray(originalObjectValue) &&
-      defaultsValue
-    ) {
+    if (isObject(originalObjectValue) && hasDefault) {
       result[key] = compose(defaultsValue, originalObjectValue);
       continue;
     }
@@ -34,7 +30,11 @@ function compose(defaults, originalObject) {
   return result;
 }
 
-function isEmptyObject<T>(object: T) {
+function isObject(value: any) {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isEmptyObjectOrArray<T>(object: T) {
   if (typeof object !== "object" || object === null) return false;
   return Object.keys(object).length === 0;
 }
@@ -44,6 +44,6 @@ function isEmpty(value: any) {
     value === undefined ||
     value === "" ||
     value === null ||
-    isEmptyObject(value)
+    isEmptyObjectOrArray(value)
   );
 }
