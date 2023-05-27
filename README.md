@@ -6,7 +6,7 @@
 </div>
 
 
-_A **tiny (300B) JavaScript library** that allows you to set **default values** for **nested objects**_
+_A **tiny** (300B) **JavaScript library** that allows you to set **default values** for **nested objects**_
 
 [![npm version](https://badge.fury.io/js/default-composer.svg)](https://badge.fury.io/js/default-composer)
 [![gzip size](https://img.badgesize.io/https://unpkg.com/default-composer?compression=gzip&label=gzip)](https://unpkg.com/default-composer)
