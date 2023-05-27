@@ -38,6 +38,7 @@ describe('defaultComposer', () => {
     const originalObject = {
       name: 'Aral',
       emails: [],
+      isDesigner: null,
       phone: '555555555',
       age: null,
       address: {
