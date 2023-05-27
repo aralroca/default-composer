@@ -1,6 +1,10 @@
+<div style="text-align:center">
+<img src="./logo.svg" alt="Default composer logo" width="100" height="100" />
 <h1>
 <div><b>Default composer</b></div>
 </h1>
+</div>
+
 
 _A JavaScript library that allows you to set **default values** for **nested objects**_
 
