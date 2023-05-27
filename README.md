@@ -1,4 +1,20 @@
-# default-composer
+<h1>
+<div><b>Default composer</b></div>
+</h1>
+
+_A JavaScript library that allows you to set **default values** for **nested objects**_
+
+[![npm version](https://badge.fury.io/js/default-composer.svg)](https://badge.fury.io/js/default-composer)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/default-composer?compression=gzip&label=gzip)](https://unpkg.com/default-composer)
+[![CI Status](https://github.com/aralroca/default-composer/actions/workflows/test.yml/badge.svg)](https://github.com/aralroca/default-composer/actions/workflows/test.yml)
+[![Maintenance Status](https://badgen.net/badge/maintenance/active/green)](https://github.com/aralroca/default-composer#maintenance-status)
+[![Weekly downloads](https://badgen.net/npm/dw/default-composer?color=blue)](https://www.npmjs.com/package/default-composer)
+[![PRs Welcome][badge-prwelcome]][prwelcome]<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+[badge-prwelcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[prwelcome]: http://makeapullrequest.com
 
 "default-composer" is a JavaScript library that allows you to set default values for **nested objects**. The library replaces empty strings/arrays/objects, null, or undefined values in an existing object with the defined default values, which helps simplify programming logic and reduce the amount of code needed to set default values.
 
