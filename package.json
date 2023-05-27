@@ -1,0 +1,53 @@
+{
+  "name": "default-composer",
+  "version": "0.1.0",
+  "description": "A JavaScript library that allows you to set default values for nested objects",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aralroca/default-composer.git"
+  },
+  "keywords": [
+    "default",
+    "composer",
+    "merge",
+    "mix",
+    "nested",
+    "defaults",
+    "json",
+    "tree",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Aral Roca <aral-rg@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aralroca/default-composer/issues"
+  },
+  "homepage": "https://github.com/aralroca/default-composer#readme",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest ./tests --watch",
+    "lint": "eslint ./src",
+    "format": "eslint --fix ./src",
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "prepublish": "yarn build"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "7.21.5",
+    "@types/jest": "29.5.1",
+    "jest": "29.5.0",
+    "lodash": "4.17.21",
+    "microbundle": "0.15.1"
+  }
+}
