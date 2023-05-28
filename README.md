@@ -5,7 +5,6 @@
 </h1>
 </div>
 
-
 _A **tiny** (300B) **JavaScript library** that allows you to set **default values** for **nested objects**_
 
 [![npm version](https://badge.fury.io/js/default-composer.svg)](https://badge.fury.io/js/default-composer)
@@ -14,14 +13,17 @@ _A **tiny** (300B) **JavaScript library** that allows you to set **default value
 [![Maintenance Status](https://badgen.net/badge/maintenance/active/green)](https://github.com/aralroca/default-composer#maintenance-status)
 [![Weekly downloads](https://badgen.net/npm/dw/default-composer?color=blue)](https://www.npmjs.com/package/default-composer)
 [![PRs Welcome][badge-prwelcome]][prwelcome]<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [badge-prwelcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+
 [prwelcome]: http://makeapullrequest.com
 
 "default-composer" is a JavaScript library that allows you to set default values for **nested objects**. The library replaces empty strings/arrays/objects, null, or undefined values in an existing object with the defined default values, which helps simplify programming logic and reduce the amount of code needed to set default values.
 
 ## Installation
+
 You can install "default-composer" using npm:
 
 ```bh
@@ -36,41 +38,42 @@ yarn add default-composer
 
 ## Usage
 
-To use "default-composer", simply require the library and call the `defaultComposer()` function with the default values object and the original object that you want to set default values for. For example:
+To use "default-composer", simply import the library and call the `defaultComposer()` function with the default values object and the original object that you want to set default values for. For example:
 
 ```js
-import defaultComposer from 'default-composer';
+import { defaultComposer } from "default-composer";
 
 const defaults = {
-  name: 'Aral 😊',
-  surname: '',
+  name: "Aral 😊",
+  surname: "",
   isDeveloper: true,
   isDesigner: false,
   age: 33,
   address: {
-    street: '123 Main St',
-    city: 'Anytown',
-    state: 'CA',
+    street: "123 Main St",
+    city: "Anytown",
+    state: "CA",
   },
-  emails: ['contact@aralroca.com'],
-  hobbies: ['programming'],
+  emails: ["contact@aralroca.com"],
+  hobbies: ["programming"],
 };
 
 const originalObject = {
-  name: 'Aral',
+  name: "Aral",
   emails: [],
-  phone: '555555555',
+  phone: "555555555",
   age: null,
   address: {
-    zip: '54321'
+    zip: "54321",
   },
-  hobbies: ['parkour', 'computer science', 'books', 'nature'],
+  hobbies: ["parkour", "computer science", "books", "nature"],
 };
 
 const result = defaultComposer(defaults, originalObject);
 
 console.log(result);
 ```
+
 This will output:
 
 ```js
@@ -94,48 +97,46 @@ This will output:
 
 ## API
 
+### `defaultComposer`
+
 ```js
-defaultComposer(defaults, object1[, object2, ...])
+defaultComposer(defaultsPriorityN, [..., defaultsPriority2, defaultsPriority1, objectWithData])
 ```
 
 This function takes one or more objects as arguments and returns a new object with default values applied. The first argument should be an object containing the default values to apply. Subsequent arguments should be the objects to apply the default values to.
 
-```js
-defaultComposer(priority3, priority2, priority1)
-```
-
 If a property in a given object is either empty, null, or undefined, and the corresponding property in the defaults object is not empty, null, or undefined, the default value will be used.
 
-### Example
+**Example**:
 
 ```js
-import defaultComposer from 'default-composer';
+import { defaultComposer } from "default-composer";
 
 const defaultsPriority1 = {
-  name: 'Aral 😊',
-  hobbies: ['reading']
+  name: "Aral 😊",
+  hobbies: ["reading"],
 };
 
 const defaultsPriority2 = {
-  name: 'Aral 🤔',
+  name: "Aral 🤔",
   age: 33,
   address: {
-    street: '123 Main St',
-    city: 'Anytown',
-    state: 'CA',
-    zip: '12345'
+    street: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+    zip: "12345",
   },
-  hobbies: ['reading', 'hiking']
-}
+  hobbies: ["reading", "hiking"],
+};
 
 const object = {
   address: {
-    street: '',
-    city: 'Anothercity',
-    state: 'NY',
-    zip: ''
+    street: "",
+    city: "Anothercity",
+    state: "NY",
+    zip: "",
   },
-  hobbies: ['running']
+  hobbies: ["running"],
 };
 
 const result = defaultComposer(defaultsPriority2, defaultsPriority1, object);
@@ -159,6 +160,27 @@ This will output:
 }
 ```
 
+### `setConfig`
+
+`setConfig` is a function that allows you to set configuration options for `defaultComposer`. Currently, the only configuration option available is `emptyChecker`, which is a function that determines whether a value should be considered empty or not. By default, is detected as empty when is null, undefined, an empty string, an empty array, or an empty object. However, you can use `setConfig` to provide your own implementation of `emptyChecker` if you need to customize this behavior.
+
+Here is an example of how you can use `setConfig`:
+
+```ts
+import { defaultComposer, setConfig } from "default-composer";
+
+const isNullOrWhitespace = (key: string, value: unknown) => {
+  return value === null || (typeof value === "string" && value.trim() === "");
+};
+
+setConfig({ emptyChecker: isNullOrWhitespace });
+
+const defaults = { example: "replaced", anotherExample: "also replaced" };
+const originalObject = { example: "   ", anotherExample: null };
+const result = defaultComposer<any>(defaults, originalObject);
+console.log(result); // { example: 'replaced', anotherExample: 'also replaced' }
+```
+
 ## TypeScript
 
 In order to use in TypeScript you can pass a generic with the expected output, and all the expected input by default should be partials of this generic.
@@ -167,36 +189,36 @@ Example:
 
 ```ts
 type Addres = {
-  street: string,
-  city: string,
-  state: string,
-  zip: string
-}
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+};
 
 type User = {
-  name: string,
-  age: number,
-  address: Address,
-  hobbies: string[]
-}
+  name: string;
+  age: number;
+  address: Address;
+  hobbies: string[];
+};
 
 const defaults = {
-  name: 'Aral 😊',
-  hobbies: ['reading']
+  name: "Aral 😊",
+  hobbies: ["reading"],
 };
 
 const object = {
   age: 33,
   address: {
-    street: '',
-    city: 'Anothercity',
-    state: 'NY',
-    zip: ''
+    street: "",
+    city: "Anothercity",
+    state: "NY",
+    zip: "",
   },
-  hobbies: []
+  hobbies: [],
 };
 
-defaultComposer<User>(defaults, object)
+defaultComposer<User>(defaults, object);
 ```
 
 ## Contributing
