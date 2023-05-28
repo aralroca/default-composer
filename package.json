@@ -39,6 +39,7 @@
     "test:watch": "jest ./tests --watch",
     "build": "microbundle",
     "dev": "microbundle watch",
+    "format": "npx prettier --write .",
     "prepublish": "yarn build"
   },
   "devDependencies": {
