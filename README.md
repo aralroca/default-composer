@@ -22,6 +22,18 @@ _A **tiny** (300B) **JavaScript library** that allows you to set **default value
 
 "default-composer" is a JavaScript library that allows you to set default values for **nested objects**. The library replaces empty strings/arrays/objects, null, or undefined values in an existing object with the defined default values, which helps simplify programming logic and reduce the amount of code needed to set default values.
 
+**Content**:
+
+- [1. Installation](#installation)
+- [2. Usage](#usage)
+- [3. API](#api)
+  - [`defaultComposer`](#defaultcomposer)
+  - [`setConfig`](#setconfig)
+- [4. TypeScript](#typescript)
+- [5. Contributing](#contributing)
+- [6. License](#license)
+- [7. Credits](#credits)
+
 ## Installation
 
 You can install "default-composer" using npm:
@@ -232,3 +244,6 @@ Contributions to "default-composer" are welcome! If you find a bug or want to su
 ## Credits
 
 "default-composer" was created by [Aral Roca](https://github.com/aralroca).
+
+<img src="https://img.shields.io/twitter/follow/aralroca?style=social&logo=twitter"
+            alt="follow on Twitter"></a>
