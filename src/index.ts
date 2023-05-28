@@ -11,12 +11,12 @@ function compose<T>(defaults: Partial<T>, obj: Partial<T>): Partial<T> {
     const originalObjectValue = obj[key];
     const hasDefault = key in defaults;
 
-    if (isEmpty(originalObjectValue) && hasDefault) {
+    if (hasDefault && isEmpty(originalObjectValue)) {
       result[key] = defaultsValue;
       continue;
     }
 
-    if (isObject(originalObjectValue) && hasDefault) {
+    if (hasDefault && isObject(originalObjectValue)) {
       result[key] = compose(defaultsValue, originalObjectValue);
       continue;
     }
