@@ -1,4 +1,4 @@
-import defaultComposer from "."
+import { defaultComposer, setConfig } from "."
 
 type Address = {
   street?: string,
@@ -19,6 +19,8 @@ type User = {
 }
 
 describe('defaultComposer', () => {
+  beforeEach(() => setConfig({}))
+
   it('should defaultComposer defaults with originalObject', () => {
     const defaults = {
       name: 'Aral 😊',
@@ -125,5 +127,58 @@ describe('defaultComposer', () => {
     output.test();
 
     expect(mockFn).toBeCalledTimes(1);
+  })
+
+  it('should work with a custom emptyChecker', () => {
+    const defaults = {
+      original: {
+        shouldKeepOriginal1: 'replaced',
+        shouldKeepOriginal2: 'replaced',
+      },
+      mixed: {
+        shouldTakeDefault1: 'replaced',
+        shouldTakeDefault2: 'replaced',
+        shouldKeepOriginal1: 'replaced',
+        shouldKeepOriginal2: 'replaced',
+        shouldKeepOriginal3: 'replaced',
+        shouldKeepOriginal4: 'replaced',
+      }
+    };
+    const object = {
+      original: {
+        shouldKeepOriginal1: 'original',
+        shouldKeepOriginal2: true,
+      },
+      mixed: {
+        shouldTakeDefault1: ' ',
+        shouldTakeDefault2: null,
+        shouldKeepOriginal1: false,
+        shouldKeepOriginal2: undefined,
+        shouldKeepOriginal3: [],
+        shouldKeepOriginal4: {},
+      }
+    }
+    const isNullOrWhitespace = (key: string, value: unknown) => {
+      return value === null || (typeof value === 'string' && value.trim() === '');
+    }
+
+    const expected = {
+      original: {
+        shouldKeepOriginal1: 'original',
+        shouldKeepOriginal2: true,
+      },
+      mixed: {
+        shouldTakeDefault1: 'replaced',
+        shouldTakeDefault2: 'replaced',
+        shouldKeepOriginal1: false,
+        shouldKeepOriginal2: undefined,
+        shouldKeepOriginal3: [],
+        shouldKeepOriginal4: {},
+      }
+    }
+
+    setConfig({ emptyChecker: isNullOrWhitespace });
+
+    expect(defaultComposer<any>(defaults, object)).toEqual(expected)
   })
 });

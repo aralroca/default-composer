@@ -36,10 +36,10 @@ yarn add default-composer
 
 ## Usage
 
-To use "default-composer", simply require the library and call the `defaultComposer()` function with the default values object and the original object that you want to set default values for. For example:
+To use "default-composer", simply import the library and call the `defaultComposer()` function with the default values object and the original object that you want to set default values for. For example:
 
 ```js
-import defaultComposer from 'default-composer';
+import { defaultComposer } from 'default-composer';
 
 const defaults = {
   name: 'Aral 😊',
@@ -94,22 +94,20 @@ This will output:
 
 ## API
 
+### `defaultComposer`
+
 ```js
-defaultComposer(defaults, object1[, object2, ...])
+defaultComposer(defaultsPriorityN, [..., defaultsPriority2, defaultsPriority1, objectWithData])
 ```
 
 This function takes one or more objects as arguments and returns a new object with default values applied. The first argument should be an object containing the default values to apply. Subsequent arguments should be the objects to apply the default values to.
 
-```js
-defaultComposer(priority3, priority2, priority1)
-```
-
 If a property in a given object is either empty, null, or undefined, and the corresponding property in the defaults object is not empty, null, or undefined, the default value will be used.
 
-### Example
+**Example**:
 
 ```js
-import defaultComposer from 'default-composer';
+import { defaultComposer } from 'default-composer';
 
 const defaultsPriority1 = {
   name: 'Aral 😊',
@@ -158,6 +156,28 @@ This will output:
   hobbies: ['running']
 }
 ```
+
+### `setConfig`
+
+`setConfig` is a function that allows you to set configuration options for `defaultComposer`. Currently, the only configuration option available is `emptyChecker`, which is a function that determines whether a value should be considered empty or not. By default, is detected as empty when is null, undefined, an empty string, an empty array, or an empty object. However, you can use `setConfig` to provide your own implementation of `emptyChecker` if you need to customize this behavior.
+
+Here is an example of how you can use `setConfig`:
+
+```ts
+import { defaultComposer, setConfig } from 'default-composer';
+
+const isNullOrWhitespace = (key: string, value: unknown) => {
+  return value === null || (typeof value === 'string' && value.trim() === '');
+}
+
+setConfig({ emptyChecker: isNullOrWhitespace });
+
+const defaults = { example: 'replaced', anotherExample: 'also replaced' }
+const originalObject = { example: '   ', anotherExample: null }
+const result = defaultComposer<any>(defaults, originalObject);
+console.log(result) // { example: 'replaced', anotherExample: 'also replaced' }
+```
+
 
 ## TypeScript
 

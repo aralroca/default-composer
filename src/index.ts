@@ -1,22 +1,35 @@
-export default function defaultComposer<T>(...args: Partial<T>[]): T {
+type emptyCheckerType = (key: string, value: unknown) => boolean;
+
+type Config = {
+  emptyChecker?: emptyCheckerType;
+};
+
+let config: Config = {};
+
+export function setConfig(newConfig: Config): void {
+  config = newConfig;
+}
+
+export function defaultComposer<T>(...args: Partial<T>[]): T {
   return args.reduce(compose, args[0]) as T;
 }
 
 function compose<T>(defaults: Partial<T>, obj: Partial<T>): Partial<T> {
   const result: Partial<T> = {};
   const allKeys = new Set([defaults, obj].flatMap(Object.keys));
+  const isEmptyFn = config.emptyChecker || isEmpty;
 
   for (let key of allKeys) {
     const defaultsValue = defaults[key];
     const originalObjectValue = obj[key];
     const hasDefault = key in defaults;
 
-    if (hasDefault && isEmpty(originalObjectValue)) {
+    if (hasDefault && isEmptyFn(key, originalObjectValue)) {
       result[key] = defaultsValue;
       continue;
     }
 
-    if (hasDefault && isObject(originalObjectValue)) {
+    if (isObject(defaultsValue) && isObject(originalObjectValue)) {
       result[key] = compose(defaultsValue, originalObjectValue);
       continue;
     }
@@ -36,7 +49,7 @@ function isEmptyObjectOrArray<T>(object: T): boolean {
   return Object.keys(object).length === 0;
 }
 
-function isEmpty(value: any): boolean {
+function isEmpty(key: string, value: unknown): boolean {
   return (
     value === undefined ||
     value === "" ||
