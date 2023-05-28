@@ -11,7 +11,7 @@ type User = {
   name: string,
   surname?: string,
   isDeveloper?: boolean,
-  isDesigner?: boolean,
+  isDesigner?: boolean | null,
   age: number | null,
   address: Address
   hobbies: string[]
@@ -108,5 +108,22 @@ describe('defaultComposer', () => {
     }
 
     expect(defaultComposer<User>(defaultsPriority2, defaultsPriority1, object)).toEqual(expected)
+  })
+
+  it('should work with functions inside the object', () => {
+    const mockFn = jest.fn();
+    const defaults = {
+      test: () => mockFn(),
+    };
+
+    const object = {
+      test: null
+    };
+
+    const output = defaultComposer<any>(defaults, object);
+
+    output.test();
+
+    expect(mockFn).toBeCalledTimes(1);
   })
 });

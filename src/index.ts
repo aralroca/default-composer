@@ -2,16 +2,13 @@ export default function defaultComposer<T>(...args: Partial<T>[]): T {
   return args.reduce(compose, args[0]) as T;
 }
 
-function compose(defaults, originalObject) {
-  const result = {};
-  const allKeys = new Set([
-    ...Object.keys(defaults),
-    ...Object.keys(originalObject),
-  ]);
+function compose<T>(defaults: Partial<T>, obj: Partial<T>): Partial<T> {
+  const result: Partial<T> = {};
+  const allKeys = new Set([defaults, obj].flatMap(Object.keys));
 
   for (let key of allKeys) {
     const defaultsValue = defaults[key];
-    const originalObjectValue = originalObject[key];
+    const originalObjectValue = obj[key];
     const hasDefault = key in defaults;
 
     if (isEmpty(originalObjectValue) && hasDefault) {
@@ -30,16 +27,16 @@ function compose(defaults, originalObject) {
   return result;
 }
 
-function isObject(value: any) {
+function isObject(value: any): boolean {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function isEmptyObjectOrArray<T>(object: T) {
+function isEmptyObjectOrArray<T>(object: T): boolean {
   if (typeof object !== "object" || object === null) return false;
   return Object.keys(object).length === 0;
 }
 
-function isEmpty(value: any) {
+function isEmpty(value: any): boolean {
   return (
     value === undefined ||
     value === "" ||
