@@ -131,7 +131,7 @@ describe("defaultComposer", () => {
     expect(mockFn).toBeCalledTimes(1);
   });
 
-  it("should work with a custom emptyChecker", () => {
+  it("should work with a custom isDefaultableValue", () => {
     const defaults = {
       original: {
         shouldKeepOriginal1: "replaced",
@@ -160,7 +160,13 @@ describe("defaultComposer", () => {
         shouldKeepOriginal4: {},
       },
     };
-    const isNullOrWhitespace = (key: string, value: unknown) => {
+    const isNullOrWhitespace = ({
+      key,
+      value,
+    }: {
+      key: string;
+      value: unknown;
+    }) => {
       return (
         value === null || (typeof value === "string" && value.trim() === "")
       );
@@ -181,7 +187,70 @@ describe("defaultComposer", () => {
       },
     };
 
-    setConfig({ emptyChecker: isNullOrWhitespace });
+    setConfig({ isDefaultableValue: isNullOrWhitespace });
+
+    expect(defaultComposer<any>(defaults, object)).toEqual(expected);
+  });
+
+  it("should work with a custom isDefaultableValue reusing pre-calculated defaultableValue ", () => {
+    const defaults = {
+      original: {
+        shouldKeepOriginal1: "replaced",
+        shouldKeepOriginal2: "replaced",
+      },
+      mixed: {
+        shouldTakeDefault1: "replaced",
+        shouldTakeDefault2: "replaced",
+        shouldKeepOriginal1: "replaced",
+        shouldKeepOriginal2: "replaced",
+        shouldKeepOriginal3: "replaced",
+        shouldKeepOriginal4: "replaced",
+      },
+    };
+    const object = {
+      original: {
+        shouldKeepOriginal1: "original",
+        shouldKeepOriginal2: true,
+      },
+      mixed: {
+        shouldTakeDefault1: " ",
+        shouldTakeDefault2: null,
+        shouldKeepOriginal1: false,
+        shouldKeepOriginal2: undefined,
+        shouldKeepOriginal3: [],
+        shouldKeepOriginal4: {},
+      },
+    };
+    const isNullOrWhitespace = ({
+      key,
+      value,
+      defaultableValue,
+    }: {
+      key: string;
+      value: unknown;
+      defaultableValue: boolean;
+    }) => {
+      return (
+        defaultableValue || (typeof value === "string" && value.trim() === "")
+      );
+    };
+
+    const expected = {
+      original: {
+        shouldKeepOriginal1: "original",
+        shouldKeepOriginal2: true,
+      },
+      mixed: {
+        shouldTakeDefault1: "replaced",
+        shouldTakeDefault2: "replaced",
+        shouldKeepOriginal1: false,
+        shouldKeepOriginal2: "replaced",
+        shouldKeepOriginal3: "replaced",
+        shouldKeepOriginal4: "replaced",
+      },
+    };
+
+    setConfig({ isDefaultableValue: isNullOrWhitespace });
 
     expect(defaultComposer<any>(defaults, object)).toEqual(expected);
   });
