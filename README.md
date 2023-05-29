@@ -5,7 +5,7 @@
 </h1>
 </div>
 
-_A **tiny** (300B) **JavaScript library** that allows you to set **default values** for **nested objects**_
+_A **tiny** (~300B) **JavaScript library** that allows you to set **default values** for **nested objects**_
 
 [![npm version](https://badge.fury.io/js/default-composer.svg)](https://badge.fury.io/js/default-composer)
 [![gzip size](https://img.badgesize.io/https://unpkg.com/default-composer?compression=gzip&label=gzip)](https://unpkg.com/default-composer)
@@ -174,18 +174,53 @@ This will output:
 
 ### `setConfig`
 
-`setConfig` is a function that allows you to set configuration options for `defaultComposer`. Currently, the only configuration option available is `emptyChecker`, which is a function that determines whether a value should be considered empty or not. By default, is detected as empty when is null, undefined, an empty string, an empty array, or an empty object. However, you can use `setConfig` to provide your own implementation of `emptyChecker` if you need to customize this behavior.
+`setConfig` is a function that allows you to set configuration options for `defaultComposer`. Currently, the only configuration option available is `isDefaultableValue`, which is a function that determines whether a value should be considered defaultable or not.
+
+However, you can use `setConfig` to provide your own implementation of `isDefaultableValue` if you need to customize this behavior.
+
+```ts
+type IsDefaultableValueParams = ({
+  key,
+  value,
+  defaultableValue,
+}: {
+  key: string;
+  value: unknown;
+  defaultableValue: boolean; // In case you want to re-use the default behavior
+}) => boolean;
+```
+
+The `defaultableValue` boolean is the result of the default behavior of `isDefaultableValue`. By default, is detected as `defaultableValue` when is `null`, `undefined`, an empty `string`, an empty `array`, or an empty `object`.
 
 Here is an example of how you can use `setConfig`:
 
 ```ts
 import { defaultComposer, setConfig } from "default-composer";
 
-const isNullOrWhitespace = (key: string, value: unknown) => {
+const isNullOrWhitespace = ({ key, value }) => {
   return value === null || (typeof value === "string" && value.trim() === "");
 };
 
-setConfig({ emptyChecker: isNullOrWhitespace });
+setConfig({ isDefaultableValue: isNullOrWhitespace });
+
+const defaults = { example: "replaced", anotherExample: "also replaced" };
+const originalObject = { example: "   ", anotherExample: null };
+const result = defaultComposer<any>(defaults, originalObject);
+console.log(result); // { example: 'replaced', anotherExample: 'also replaced' }
+```
+
+Here is another example of how you can use `setConfig` reusing the `defaultableValue`:
+
+```ts
+import { defaultComposer, setConfig } from "default-composer";
+
+setConfig({
+  isDefaultableValue({ key, value, defaultableValue }) {
+    return (
+      defaultableValue || (typeof value === "string" && value.trim() === "")
+    );
+  },
+});
 
 const defaults = { example: "replaced", anotherExample: "also replaced" };
 const originalObject = { example: "   ", anotherExample: null };
