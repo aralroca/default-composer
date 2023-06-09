@@ -7,7 +7,7 @@
   "module": "dist/index.m.js",
   "exports": {
     "require": "./dist/index.js",
-    "default": "./dist/index.modern.js"
+    "default": "./dist/index.modern.mjs"
   },
   "files": [
     "dist"
