@@ -16,6 +16,8 @@ type User = {
   address: Address;
   hobbies: string[];
   emails: string[];
+  toString: string;
+  constructor: string | null;
 };
 
 describe("defaultComposer", () => {
