@@ -26,7 +26,7 @@ export function defaultComposer<T>(...args: Partial<T>[]): T {
 
 function compose<T>(defaults: Partial<T>, obj: Partial<T>): Partial<T> {
   const result: Partial<T> = {};
-  const allKeys = new Set([defaults, obj].flatMap(Object.keys));
+  const allKeys = new Set([defaults, obj].flatMap(getAllKeys));
 
   for (let key of allKeys) {
     const defaultsValue = defaults[key];
@@ -60,7 +60,7 @@ function isObject(value: any): boolean {
 
 function isEmptyObjectOrArray<T>(object: T): boolean {
   if (typeof object !== "object" || object === null) return false;
-  return Object.keys(object).length === 0;
+  return getAllKeys(object).length === 0;
 }
 
 function checkDefaultableValue({ value }: { value: unknown }): boolean {
@@ -77,4 +77,13 @@ function hasOwn<T extends PropertyKey>(
   key: unknown
 ): key is T {
   return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+function getAllKeys(object: {}): PropertyKey[] {
+  return [
+    ...Object.keys(object),
+    ...Object.getOwnPropertySymbols(object).filter(
+      (key) => Object.getOwnPropertyDescriptor(object, key)?.enumerable
+    ),
+  ];
 }
