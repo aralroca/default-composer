@@ -16,6 +16,8 @@ type User = {
   address: Address;
   hobbies: string[];
   emails: string[];
+  toString: string;
+  constructor: string | null;
 };
 
 describe("defaultComposer", () => {
@@ -35,6 +37,7 @@ describe("defaultComposer", () => {
       },
       emails: ["contact@aralroca.com"],
       hobbies: ["programming"],
+      toString: "I am Aral",
     };
 
     const originalObject = {
@@ -47,6 +50,7 @@ describe("defaultComposer", () => {
         zip: "54321",
       },
       hobbies: ["parkour", "computer science", "books", "nature"],
+      constructor: null,
     };
 
     const expected = {
@@ -64,6 +68,8 @@ describe("defaultComposer", () => {
         zip: "54321",
       },
       hobbies: ["parkour", "computer science", "books", "nature"],
+      toString: "I am Aral",
+      constructor: null,
     };
 
     expect(defaultComposer<User>(defaults, originalObject)).toEqual(expected);

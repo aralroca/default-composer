@@ -30,8 +30,8 @@ function compose<T>(defaults: Partial<T>, obj: Partial<T>): Partial<T> {
 
   for (let key of allKeys) {
     const defaultsValue = defaults[key];
-    const originalObjectValue = obj[key];
-    const hasDefault = key in defaults;
+    const originalObjectValue = hasOwn(obj, key) ? obj[key] : undefined;
+    const hasDefault = hasOwn(defaults, key);
     const checkOptions = { key, value: originalObjectValue };
     const defaultableValue = checkDefaultableValue(checkOptions);
     const defaultableValueFromConfig =
@@ -70,4 +70,11 @@ function checkDefaultableValue({ value }: { value: unknown }): boolean {
     value === null ||
     isEmptyObjectOrArray(value)
   );
+}
+
+function hasOwn<T extends PropertyKey>(
+  obj: Partial<Record<T, unknown>>,
+  key: unknown
+): key is T {
+  return Object.prototype.hasOwnProperty.call(obj, key);
 }
