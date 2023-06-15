@@ -12,7 +12,6 @@ _A **tiny** (~300B) **JavaScript library** that allows you to set **default valu
 [![CI Status](https://github.com/aralroca/default-composer/actions/workflows/test.yml/badge.svg)](https://github.com/aralroca/default-composer/actions/workflows/test.yml)
 [![Maintenance Status](https://badgen.net/badge/maintenance/active/green)](https://github.com/aralroca/default-composer#maintenance-status)
 [![Weekly downloads](https://badgen.net/npm/dw/default-composer?color=blue)](https://www.npmjs.com/package/default-composer)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 [![PRs Welcome][badge-prwelcome]][prwelcome]<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -34,6 +33,7 @@ _A **tiny** (~300B) **JavaScript library** that allows you to set **default valu
 - [5. Contributing](#contributing)
 - [6. License](#license)
 - [7. Credits](#credits)
+- [8. Contributors](#contributors)
 
 ## Installation
 
