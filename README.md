@@ -13,7 +13,7 @@ _A **tiny** (~300B) **JavaScript library** that allows you to set **default valu
 [![Maintenance Status](https://badgen.net/badge/maintenance/active/green)](https://github.com/aralroca/default-composer#maintenance-status)
 [![Weekly downloads](https://badgen.net/npm/dw/default-composer?color=blue)](https://www.npmjs.com/package/default-composer)
 [![PRs Welcome][badge-prwelcome]][prwelcome]<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [badge-prwelcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
@@ -296,6 +296,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://robinpokorny.com"><img src="https://avatars.githubusercontent.com/u/68341?v=4?s=100" width="100px;" alt="Robin Pokorny"/><br /><sub><b>Robin Pokorny</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/commits?author=robinpokorny" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/leeferwagen"><img src="https://avatars.githubusercontent.com/u/1287545?v=4?s=100" width="100px;" alt="Muslim Idris"/><br /><sub><b>Muslim Idris</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/commits?author=leeferwagen" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://aralroca.com"><img src="https://avatars.githubusercontent.com/u/13313058?v=4?s=100" width="100px;" alt="Aral Roca Gomez"/><br /><sub><b>Aral Roca Gomez</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/commits?author=aralroca" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
