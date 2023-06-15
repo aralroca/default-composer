@@ -294,7 +294,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tbody>
     <tr>
-    <td align="center" valign="top" width="14.28%"><a href="https://aralroca.com"><img src="https://avatars.githubusercontent.com/u/13313058?v=4?s=100" width="100px;" alt="Aral Roca Gomez"/><br /><sub><b>Aral Roca Gomez</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/commits?author=aralroca" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://aralroca.com"><img src="https://avatars.githubusercontent.com/u/13313058?v=4?s=100" width="100px;" alt="Aral Roca Gomez"/><br /><sub><b>Aral Roca Gomez</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/commits?author=aralroca" title="Code">💻</a> <a href="#maintenance-aralroca" title="Maintenance">🚧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://robinpokorny.com"><img src="https://avatars.githubusercontent.com/u/68341?v=4?s=100" width="100px;" alt="Robin Pokorny"/><br /><sub><b>Robin Pokorny</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/commits?author=robinpokorny" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/leeferwagen"><img src="https://avatars.githubusercontent.com/u/1287545?v=4?s=100" width="100px;" alt="Muslim Idris"/><br /><sub><b>Muslim Idris</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/commits?author=leeferwagen" title="Code">💻</a></td>
     </tr>
