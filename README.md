@@ -1,7 +1,4 @@
 <div align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 <img src="./logo.svg" alt="Default composer logo" width="100" height="100" />
 <h1>
 <div><b>Default composer</b></div>
@@ -15,6 +12,7 @@ _A **tiny** (~300B) **JavaScript library** that allows you to set **default valu
 [![CI Status](https://github.com/aralroca/default-composer/actions/workflows/test.yml/badge.svg)](https://github.com/aralroca/default-composer/actions/workflows/test.yml)
 [![Maintenance Status](https://badgen.net/badge/maintenance/active/green)](https://github.com/aralroca/default-composer#maintenance-status)
 [![Weekly downloads](https://badgen.net/npm/dw/default-composer?color=blue)](https://www.npmjs.com/package/default-composer)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 [![PRs Welcome][badge-prwelcome]][prwelcome]<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
