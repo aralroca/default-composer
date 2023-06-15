@@ -8,6 +8,15 @@
   "commitConvention": "angular",
   "contributors": [
     {
+      "login": "aralroca",
+      "name": "Aral Roca Gomez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13313058?v=4",
+      "profile": "https://aralroca.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "robinpokorny",
       "name": "Robin Pokorny",
       "avatar_url": "https://avatars.githubusercontent.com/u/68341?v=4",
@@ -21,15 +30,6 @@
       "name": "Muslim Idris",
       "avatar_url": "https://avatars.githubusercontent.com/u/1287545?v=4",
       "profile": "https://github.com/leeferwagen",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "aralroca",
-      "name": "Aral Roca Gomez",
-      "avatar_url": "https://avatars.githubusercontent.com/u/13313058?v=4",
-      "profile": "https://aralroca.com",
       "contributions": [
         "code"
       ]
