@@ -33,7 +33,7 @@ _A **tiny** (~300B) **JavaScript library** that allows you to set **default valu
 - [5. Contributing](#contributing)
 - [6. License](#license)
 - [7. Credits](#credits)
-- [8. Contributors](#contributors)
+- [8. Contributors](#contributors-)
 
 ## Installation
 
