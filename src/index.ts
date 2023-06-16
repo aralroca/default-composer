@@ -1,6 +1,6 @@
 type isDefaultableValueInputType = {
   defaultableValue: boolean;
-  key: string;
+  key: PropertyKey;
   value: unknown;
 };
 
