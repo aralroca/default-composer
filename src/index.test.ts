@@ -18,6 +18,7 @@ type User = {
   emails: string[];
   toString: string;
   constructor: string | null;
+  [Symbol.isConcatSpreadable]: boolean;
 };
 
 describe("defaultComposer", () => {
@@ -38,6 +39,7 @@ describe("defaultComposer", () => {
       emails: ["contact@aralroca.com"],
       hobbies: ["programming"],
       toString: "I am Aral",
+      [Symbol.isConcatSpreadable]: false,
     };
 
     const originalObject = {
@@ -70,6 +72,7 @@ describe("defaultComposer", () => {
       hobbies: ["parkour", "computer science", "books", "nature"],
       toString: "I am Aral",
       constructor: null,
+      [Symbol.isConcatSpreadable]: false,
     };
 
     expect(defaultComposer<User>(defaults, originalObject)).toEqual(expected);
@@ -135,6 +138,30 @@ describe("defaultComposer", () => {
     output.test();
 
     expect(mockFn).toBeCalledTimes(1);
+  });
+
+  it("should work with enumerable symbol properties", () => {
+    const tag = Symbol.for("tag");
+    const version = Symbol.for("version");
+    const createdAt = Symbol.for("createdAt");
+
+    const defaults = {
+      [tag]: "user",
+      [createdAt]: Date.UTC(2020, 1, 1),
+    };
+
+    Object.defineProperty(defaults, version, { value: 1, enumerable: false });
+
+    const object = {
+      [createdAt]: Date.UTC(2023, 6, 1),
+    };
+
+    const expected = {
+      [tag]: "user",
+      [createdAt]: Date.UTC(2023, 6, 1),
+    };
+
+    expect(defaultComposer<any>(defaults, object)).toEqual(expected);
   });
 
   it("should work with a custom isDefaultableValue", () => {
