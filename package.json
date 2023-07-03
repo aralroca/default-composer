@@ -36,17 +36,15 @@
   },
   "homepage": "https://github.com/aralroca/default-composer#readme",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest ./tests --watch",
+    "test": "bun test src/index.test.ts",
+    "test:watch": "bun --watch test src/index.test.ts",
     "build": "microbundle",
     "dev": "microbundle watch",
     "format": "npx prettier --write .",
-    "prepublish": "yarn build"
+    "prepublish": "bun run build"
   },
   "devDependencies": {
     "@babel/preset-typescript": "7.21.5",
-    "@types/jest": "29.5.1",
-    "jest": "29.5.0",
     "microbundle": "0.15.1"
   }
 }

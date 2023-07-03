@@ -1,3 +1,4 @@
+import { describe, expect, beforeEach, it, mock } from "bun:test";
 import { defaultComposer, setConfig } from ".";
 
 type Address = {
@@ -124,7 +125,7 @@ describe("defaultComposer", () => {
   });
 
   it("should work with functions inside the object", () => {
-    const mockFn = jest.fn();
+    const mockFn = mock();
     const defaults = {
       test: () => mockFn(),
     };
@@ -137,7 +138,7 @@ describe("defaultComposer", () => {
 
     output.test();
 
-    expect(mockFn).toBeCalledTimes(1);
+    expect(mockFn).toHaveBeenCalledTimes(1);
   });
 
   it("should work with enumerable symbol properties", () => {

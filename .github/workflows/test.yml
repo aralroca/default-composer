@@ -1,5 +1,4 @@
 name: Test
-
 on:
   push:
     branches: [main]
@@ -11,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 20
-        uses: actions/setup-node@v3
+      - name: Use Bun.js
+        uses: antongolub/action-setup-bun@v1
         with:
-          node-version: "20"
-      - name: Install dependencies
-        run: yarn install
-      - run: yarn build
-      - run: yarn test
+          bun-version: 0.6.12
+          bun-repo: "Jarred-Sumner/bun-releases-for-updater"
+          platform: "linux"
+      - run: bun install
+      - run: bun run build
+      - run: bun run test
