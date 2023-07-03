@@ -1,21 +1,27 @@
 name: Test
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
-
+    branches:
+      - main
+  workflow_dispatch:
 jobs:
-  build:
+  setup-bun:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Use Bun.js
-        uses: antongolub/action-setup-bun@v1
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v3
+      - id: setup-bun
+        name: Setup Bun
+        uses: ./
         with:
           bun-version: 0.6.12
-          bun-repo: "Jarred-Sumner/bun-releases-for-updater"
-          platform: "linux"
-      - run: bun install
-      - run: bun run build
-      - run: bun run test
+      - name: Install dependencies
+        run: bun install
+      - name: Build
+        run: bun run build
+      - name: Test
+        run: bun run test
