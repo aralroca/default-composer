@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 20
-        uses: actions/setup-node@v3
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: "20"
+          bun-version: "0.6.12"
       - name: Install dependencies
-        run: yarn install
-      - run: yarn build
-      - run: yarn test
+        run: bun install
+      - run: bun run build
+      - run: bun run test
