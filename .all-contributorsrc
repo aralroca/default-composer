@@ -34,6 +34,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "namhtpyn",
+      "name": "namhtpyn",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16488178?v=4",
+      "profile": "https://github.com/namhtpyn",
+      "contributions": [
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 7,
