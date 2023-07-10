@@ -30,6 +30,8 @@ _A **tiny** (~500B) **JavaScript library** that allows you to set **default valu
 - [3. API](#api)
   - [`defaultComposer`](#defaultcomposer)
   - [`setConfig`](#setconfig)
+    - [`isDefaultableValue`](#isdefaultablevalue)
+    - [`mergeArrays`](#mergearrays)
 - [4. TypeScript](#typescript)
 - [5. Contributing](#contributing)
 - [6. License](#license)
