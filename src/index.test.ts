@@ -41,7 +41,7 @@ describe("defaultComposer", () => {
       hobbies: ["programming"],
       toString: "I am Aral",
       [Symbol.isConcatSpreadable]: false,
-    };
+    } as User;
 
     const originalObject = {
       name: "Aral",
@@ -54,7 +54,7 @@ describe("defaultComposer", () => {
       },
       hobbies: ["parkour", "computer science", "books", "nature"],
       constructor: null,
-    };
+    } as unknown as User;
 
     const expected = {
       name: "Aral",
@@ -83,7 +83,7 @@ describe("defaultComposer", () => {
     const defaultsPriority1 = {
       name: "Aral 😊",
       hobbies: ["reading"],
-    };
+    } as User;
 
     const defaultsPriority2 = {
       name: "Aral 🤔",
@@ -95,7 +95,7 @@ describe("defaultComposer", () => {
         zip: "12345",
       },
       hobbies: ["reading", "hiking"],
-    };
+    } as User;
 
     const object = {
       address: {
@@ -105,7 +105,7 @@ describe("defaultComposer", () => {
         zip: "",
       },
       hobbies: ["running"],
-    };
+    } as User;
 
     const expected = {
       name: "Aral 😊",
@@ -120,7 +120,7 @@ describe("defaultComposer", () => {
     };
 
     expect(
-      defaultComposer<User>(defaultsPriority2, defaultsPriority1, object)
+      defaultComposer<User>(defaultsPriority2, defaultsPriority1, object),
     ).toEqual(expected);
   });
 
@@ -194,17 +194,8 @@ describe("defaultComposer", () => {
         shouldKeepOriginal4: {},
       },
     };
-    const isNullOrWhitespace = ({
-      key,
-      value,
-    }: {
-      key: string;
-      value: unknown;
-    }) => {
-      return (
-        value === null || (typeof value === "string" && value.trim() === "")
-      );
-    };
+    const isNullOrWhitespace = ({ value }) =>
+      value === null || (typeof value === "string" && value.trim() === "");
 
     const expected = {
       original: {
@@ -255,19 +246,8 @@ describe("defaultComposer", () => {
         shouldKeepOriginal4: {},
       },
     };
-    const isNullOrWhitespace = ({
-      key,
-      value,
-      defaultableValue,
-    }: {
-      key: string;
-      value: unknown;
-      defaultableValue: boolean;
-    }) => {
-      return (
-        defaultableValue || (typeof value === "string" && value.trim() === "")
-      );
-    };
+    const isNullOrWhitespace = ({ value, defaultableValue }) =>
+      defaultableValue || (typeof value === "string" && value.trim() === "");
 
     const expected = {
       original: {
@@ -285,6 +265,47 @@ describe("defaultComposer", () => {
     };
 
     setConfig({ isDefaultableValue: isNullOrWhitespace });
+
+    expect(defaultComposer<any>(defaults, object)).toEqual(expected);
+  });
+
+  it("should merge arrays when config.mergeArrays is true", () => {
+    const defaults = {
+      hobbies: ["reading"],
+      another: ["another"],
+      nested: {
+        example: ["a", "b", "c"],
+        nums: [1, 2, 3],
+        objects: [{ a: 1 }, { b: 2 }],
+        notDefaultableKey: ["defaultValue"],
+      },
+    };
+
+    const object = {
+      hobbies: ["running"],
+      nested: {
+        example: ["a", "d", "e"],
+        nums: [1, 4, 5],
+        objects: [{ a: 1 }, { b: 2 }],
+        notDefaultableKey: ["shouldNotBeMerged"],
+      },
+    };
+
+    const expected = {
+      hobbies: ["reading", "running"],
+      another: ["another"],
+      nested: {
+        example: ["a", "b", "c", "d", "e"],
+        nums: [1, 2, 3, 4, 5],
+        objects: [{ a: 1 }, { b: 2 }, { a: 1 }, { b: 2 }],
+        notDefaultableKey: ["shouldNotBeMerged"],
+      },
+    };
+
+    const isDefaultableValue = ({ defaultableValue, key }) =>
+      defaultableValue && key !== "notDefaultableKey";
+
+    setConfig({ mergeArrays: true, isDefaultableValue });
 
     expect(defaultComposer<any>(defaults, object)).toEqual(expected);
   });
