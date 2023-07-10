@@ -1,17 +1,18 @@
-type isDefaultableValueInputType = {
+export type isDefaultableValueInputType = {
   defaultableValue: boolean;
   key: PropertyKey;
   value: unknown;
 };
 
-type isDefaultableValueType = ({
+export type isDefaultableValueType = ({
   defaultableValue,
   key,
   value,
 }: isDefaultableValueInputType) => boolean;
 
-type Config = {
+export type Config = {
   isDefaultableValue?: isDefaultableValueType;
+  mergeArrays?: boolean;
 };
 
 let config: Config = {};
@@ -38,7 +39,19 @@ function compose<T>(defaults: Partial<T>, obj: Partial<T>): Partial<T> {
       config.isDefaultableValue?.({ ...checkOptions, defaultableValue }) ??
       defaultableValue;
 
-    if (hasDefault && defaultableValueFromConfig) {
+    const shouldTakeDefault = hasDefault && defaultableValueFromConfig;
+
+    if (
+      shouldTakeDefault &&
+      config.mergeArrays &&
+      Array.isArray(defaultsValue) &&
+      Array.isArray(originalObjectValue)
+    ) {
+      result[key] = [...new Set([...defaultsValue, ...originalObjectValue])];
+      continue;
+    }
+
+    if (shouldTakeDefault) {
       result[key] = defaultsValue;
       continue;
     }
@@ -68,13 +81,14 @@ function checkDefaultableValue({ value }: { value: unknown }): boolean {
     value === undefined ||
     value === "" ||
     value === null ||
-    isEmptyObjectOrArray(value)
+    isEmptyObjectOrArray(value) ||
+    (Boolean(config.mergeArrays) && Array.isArray(value))
   );
 }
 
 function hasOwn<T extends PropertyKey>(
   obj: Partial<Record<T, unknown>>,
-  key: unknown
+  key: unknown,
 ): key is T {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
@@ -83,7 +97,7 @@ function getAllKeys(object: {}): PropertyKey[] {
   return [
     ...Object.keys(object),
     ...Object.getOwnPropertySymbols(object).filter(
-      (key) => Object.getOwnPropertyDescriptor(object, key)?.enumerable
+      (key) => Object.getOwnPropertyDescriptor(object, key)?.enumerable,
     ),
   ];
 }

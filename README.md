@@ -5,7 +5,7 @@
 </h1>
 </div>
 
-_A **tiny** (~300B) **JavaScript library** that allows you to set **default values** for **nested objects**_
+_A **tiny** (~500B) **JavaScript library** that allows you to set **default values** for **nested objects**_
 
 [![npm version](https://badge.fury.io/js/default-composer.svg)](https://badge.fury.io/js/default-composer)
 [![gzip size](https://img.badgesize.io/https://unpkg.com/default-composer?compression=gzip&label=gzip)](https://unpkg.com/default-composer)
@@ -14,6 +14,7 @@ _A **tiny** (~300B) **JavaScript library** that allows you to set **default valu
 [![Weekly downloads](https://badgen.net/npm/dw/default-composer?color=blue)](https://www.npmjs.com/package/default-composer)
 [![PRs Welcome][badge-prwelcome]][prwelcome]<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [badge-prwelcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
@@ -175,9 +176,16 @@ This will output:
 
 ### `setConfig`
 
-`setConfig` is a function that allows you to set configuration options for `defaultComposer`. Currently, the only configuration option available is `isDefaultableValue`, which is a function that determines whether a value should be considered defaultable or not.
+`setConfig` is a function that allows you to set configuration options for `defaultComposer`.
 
-However, you can use `setConfig` to provide your own implementation of `isDefaultableValue` if you need to customize this behavior.
+This is the available configuration:
+
+- **`isDefaultableValue`**, is a function that determines whether a value should be considered defaultable or not.
+- **`mergeArrays`**, is a boolean to define if you want to merge arrays (`true`) or not (`false`), when is set to `false` is just replacing to the default value when the original array is empty. By default is `false`.
+
+#### `isDefaultableValue`
+
+You can use `setConfig` to provide your own implementation of `isDefaultableValue` if you need to customize this behavior.
 
 ```ts
 type IsDefaultableValueParams = ({
@@ -227,6 +235,23 @@ const defaults = { example: "replaced", anotherExample: "also replaced" };
 const originalObject = { example: "   ", anotherExample: null };
 const result = defaultComposer<any>(defaults, originalObject);
 console.log(result); // { example: 'replaced', anotherExample: 'also replaced' }
+```
+
+#### `mergeArrays`
+
+Example to merge arrays:
+
+```ts
+const defaults = {
+  hobbies: ["reading"],
+};
+
+const object = {
+  hobbies: ["running"],
+};
+setConfig({ mergeArrays: true});
+
+defaultComposer<any>(defaults, object)) // { hobbies: ["reading", "running"]}
 ```
 
 ## TypeScript
