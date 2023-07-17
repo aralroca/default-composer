@@ -1,14 +1,14 @@
 {
   "name": "default-composer",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A JavaScript library that allows you to set default values for nested objects",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
   "exports": {
     "require": "./dist/index.js",
-    "default": "./dist/index.modern.mjs",
-    "types": "./dist/index.d.ts"
+    "types": "./dist/index.d.ts",
+    "default": "./dist/index.modern.mjs"
   },
   "files": [
     "dist"
