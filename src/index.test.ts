@@ -341,4 +341,27 @@ describe("defaultComposer", () => {
     expect(output.range.startDate).toBeInstanceOf(Date);
     expect(output.range.endDate).toBeInstanceOf(Date);
   });
+
+  it('should respect instance of any class', () => {
+    class TestClass {
+      constructor(public name: string) { }
+    }
+
+    const defaults = {
+      test: new TestClass('test'),
+    };
+
+    const object = {
+      test: new TestClass('test2'),
+    };
+
+    const output = defaultComposer<any>(defaults, object);
+
+    const expected = {
+      test: new TestClass('test2'),
+    };
+
+    expect(output).toEqual(expected);
+    expect(output.test).toBeInstanceOf(TestClass);
+  });
 });
