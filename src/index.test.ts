@@ -286,7 +286,7 @@ describe("defaultComposer", () => {
       nested: {
         example: ["a", "d", "e"],
         nums: [1, 4, 5],
-        objects: [{ a: 1 }, { b: 2 }],
+        objects: [{ c: 1 }, { d: 2 }, { e: 3 }],
         notDefaultableKey: ["shouldNotBeMerged"],
       },
     };
@@ -297,7 +297,11 @@ describe("defaultComposer", () => {
       nested: {
         example: ["a", "b", "c", "d", "e"],
         nums: [1, 2, 3, 4, 5],
-        objects: [{ a: 1 }, { b: 2 }, { a: 1 }, { b: 2 }],
+        objects: [
+          { a: 1, c: 1 },
+          { b: 2, d: 2 },
+          { e: 3 }
+        ],
         notDefaultableKey: ["shouldNotBeMerged"],
       },
     };
@@ -310,13 +314,13 @@ describe("defaultComposer", () => {
     expect(defaultComposer<any>(defaults, object)).toEqual(expected);
   });
 
-  it('should respect the Date object', () => {
+  it("should respect the Date object", () => {
     const defaults = {
       date: new Date(),
       range: {
         startDate: new Date(2020, 1, 1),
         endDate: new Date(2020, 1, 2),
-      }
+      },
     };
 
     const object = {
@@ -332,29 +336,29 @@ describe("defaultComposer", () => {
       range: {
         startDate: new Date(2020, 1, 1),
         endDate: new Date(2020, 1, 2),
-      }
+      },
     };
 
     expect(output).toStrictEqual(expected);
   });
 
-  it('should respect instance of any class', () => {
+  it("should respect instance of any class", () => {
     class TestClass {
       constructor(public name: string) { }
     }
 
     const defaults = {
-      test: new TestClass('test'),
+      test: new TestClass("test"),
     };
 
     const object = {
-      test: new TestClass('test2'),
+      test: new TestClass("test2"),
     };
 
     const output = defaultComposer<any>(defaults, object);
 
     const expected = {
-      test: new TestClass('test2'),
+      test: new TestClass("test2"),
     };
 
     expect(output).toStrictEqual(expected);

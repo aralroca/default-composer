@@ -47,7 +47,23 @@ function compose<T>(defaults: Partial<T>, obj: Partial<T>): Partial<T> {
       Array.isArray(defaultsValue) &&
       Array.isArray(originalObjectValue)
     ) {
-      result[key] = [...new Set([...defaultsValue, ...originalObjectValue])];
+      if (!defaultsValue.some(isObject)) {
+        result[key] = [...new Set([...defaultsValue, ...originalObjectValue])];
+        continue;
+      }
+
+      const maxLength = Math.max(
+        defaultsValue.length,
+        originalObjectValue.length,
+      );
+      const setOfObjects = new Set();
+
+      for (let i = 0; i < maxLength; i++) {
+        setOfObjects.add(compose(defaultsValue[i] ?? {}, originalObjectValue[i] ?? {}));
+      }
+
+      result[key] = [...setOfObjects];
+
       continue;
     }
 
@@ -68,11 +84,17 @@ function compose<T>(defaults: Partial<T>, obj: Partial<T>): Partial<T> {
 }
 
 function isObject(value: any): boolean {
-  return typeof value === "object" && value !== null && value.constructor === Object && !Array.isArray(value);
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    value.constructor === Object &&
+    !Array.isArray(value)
+  );
 }
 
 function isEmptyObjectOrArray<T>(object: T): boolean {
-  if (typeof object !== "object" || object === null || object instanceof Date) return false;
+  if (typeof object !== "object" || object === null || object instanceof Date)
+    return false;
   return getAllKeys(object).length === 0;
 }
 
