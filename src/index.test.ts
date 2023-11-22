@@ -313,6 +313,10 @@ describe("defaultComposer", () => {
   it('should respect the Date object', () => {
     const defaults = {
       date: new Date(),
+      range: {
+        startDate: new Date(2020, 1, 1),
+        endDate: new Date(2020, 1, 2),
+      }
     };
 
     const object = {
@@ -320,11 +324,21 @@ describe("defaultComposer", () => {
       anotherDate: new Date(2020, 2, 1),
     };
 
+    const output = defaultComposer<any>(defaults, object);
+
     const expected = {
       date: new Date(2020, 1, 1),
       anotherDate: new Date(2020, 2, 1),
+      range: {
+        startDate: new Date(2020, 1, 1),
+        endDate: new Date(2020, 1, 2),
+      }
     };
 
-    expect(defaultComposer<any>(defaults, object)).toEqual(expected);
+    expect(output).toEqual(expected);
+    expect(output.date).toBeInstanceOf(Date);
+    expect(output.anotherDate).toBeInstanceOf(Date);
+    expect(output.range.startDate).toBeInstanceOf(Date);
+    expect(output.range.endDate).toBeInstanceOf(Date);
   });
 });

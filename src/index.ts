@@ -68,7 +68,7 @@ function compose<T>(defaults: Partial<T>, obj: Partial<T>): Partial<T> {
 }
 
 function isObject(value: any): boolean {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
+  return typeof value === "object" && value !== null && !(value instanceof Date) && !Array.isArray(value);
 }
 
 function isEmptyObjectOrArray<T>(object: T): boolean {
