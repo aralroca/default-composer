@@ -335,11 +335,7 @@ describe("defaultComposer", () => {
       }
     };
 
-    expect(output).toEqual(expected);
-    expect(output.date).toBeInstanceOf(Date);
-    expect(output.anotherDate).toBeInstanceOf(Date);
-    expect(output.range.startDate).toBeInstanceOf(Date);
-    expect(output.range.endDate).toBeInstanceOf(Date);
+    expect(output).toStrictEqual(expected);
   });
 
   it('should respect instance of any class', () => {
@@ -361,7 +357,6 @@ describe("defaultComposer", () => {
       test: new TestClass('test2'),
     };
 
-    expect(output).toEqual(expected);
-    expect(output.test).toBeInstanceOf(TestClass);
+    expect(output).toStrictEqual(expected);
   });
 });
