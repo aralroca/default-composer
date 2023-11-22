@@ -1,7 +1,5 @@
 {
-  "files": [
-    "README.md"
-  ],
+  "files": ["README.md"],
   "imageSize": 100,
   "commit": false,
   "commitType": "docs",
@@ -12,46 +10,35 @@
       "name": "Aral Roca Gomez",
       "avatar_url": "https://avatars.githubusercontent.com/u/13313058?v=4",
       "profile": "https://aralroca.com",
-      "contributions": [
-        "code",
-        "maintenance"
-      ]
+      "contributions": ["code", "maintenance"]
     },
     {
       "login": "robinpokorny",
       "name": "Robin Pokorny",
       "avatar_url": "https://avatars.githubusercontent.com/u/68341?v=4",
       "profile": "http://robinpokorny.com",
-      "contributions": [
-        "code"
-      ]
+      "contributions": ["code"]
     },
     {
       "login": "leeferwagen",
       "name": "Muslim Idris",
       "avatar_url": "https://avatars.githubusercontent.com/u/1287545?v=4",
       "profile": "https://github.com/leeferwagen",
-      "contributions": [
-        "code"
-      ]
+      "contributions": ["code"]
     },
     {
       "login": "namhtpyn",
       "name": "namhtpyn",
       "avatar_url": "https://avatars.githubusercontent.com/u/16488178?v=4",
       "profile": "https://github.com/namhtpyn",
-      "contributions": [
-        "infra"
-      ]
+      "contributions": ["infra"]
     },
     {
       "login": "Josuto",
       "name": "Josu Martinez",
       "avatar_url": "https://avatars.githubusercontent.com/u/6097850?v=4",
       "profile": "https://github.com/Josuto",
-      "contributions": [
-        "bug"
-      ]
+      "contributions": ["bug"]
     }
   ],
   "contributorsPerLine": 7,
