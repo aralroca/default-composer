@@ -13,8 +13,7 @@ _A **tiny** (~500B) **JavaScript library** that allows you to set **default valu
 [![Maintenance Status](https://badgen.net/badge/maintenance/active/green)](https://github.com/aralroca/default-composer#maintenance-status)
 [![Weekly downloads](https://badgen.net/npm/dw/default-composer?color=blue)](https://www.npmjs.com/package/default-composer)
 [![PRs Welcome][badge-prwelcome]][prwelcome]<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [badge-prwelcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
@@ -325,6 +324,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="http://robinpokorny.com"><img src="https://avatars.githubusercontent.com/u/68341?v=4?s=100" width="100px;" alt="Robin Pokorny"/><br /><sub><b>Robin Pokorny</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/commits?author=robinpokorny" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/leeferwagen"><img src="https://avatars.githubusercontent.com/u/1287545?v=4?s=100" width="100px;" alt="Muslim Idris"/><br /><sub><b>Muslim Idris</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/commits?author=leeferwagen" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/namhtpyn"><img src="https://avatars.githubusercontent.com/u/16488178?v=4?s=100" width="100px;" alt="namhtpyn"/><br /><sub><b>namhtpyn</b></sub></a><br /><a href="#infra-namhtpyn" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Josuto"><img src="https://avatars.githubusercontent.com/u/6097850?v=4?s=100" width="100px;" alt="Josu Martinez"/><br /><sub><b>Josu Martinez</b></sub></a><br /><a href="https://github.com/aralroca/default-composer/issues?q=author%3AJosuto" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
