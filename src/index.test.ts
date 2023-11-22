@@ -1,4 +1,4 @@
-import { describe, expect, beforeEach, it, mock } from "bun:test";
+import { beforeEach, describe, expect, it, mock } from "bun:test";
 import { defaultComposer, setConfig } from ".";
 
 type Address = {
@@ -306,6 +306,24 @@ describe("defaultComposer", () => {
       defaultableValue && key !== "notDefaultableKey";
 
     setConfig({ mergeArrays: true, isDefaultableValue });
+
+    expect(defaultComposer<any>(defaults, object)).toEqual(expected);
+  });
+
+  it('should respect the Date object', () => {
+    const defaults = {
+      date: new Date(),
+    };
+
+    const object = {
+      date: new Date(2020, 1, 1),
+      anotherDate: new Date(2020, 2, 1),
+    };
+
+    const expected = {
+      date: new Date(2020, 1, 1),
+      anotherDate: new Date(2020, 2, 1),
+    };
 
     expect(defaultComposer<any>(defaults, object)).toEqual(expected);
   });
