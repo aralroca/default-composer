@@ -72,7 +72,7 @@ function isObject(value: any): boolean {
 }
 
 function isEmptyObjectOrArray<T>(object: T): boolean {
-  if (typeof object !== "object" || object === null) return false;
+  if (typeof object !== "object" || object === null || object instanceof Date) return false;
   return getAllKeys(object).length === 0;
 }
 
