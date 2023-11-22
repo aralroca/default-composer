@@ -43,6 +43,15 @@
       "contributions": [
         "infra"
       ]
+    },
+    {
+      "login": "Josuto",
+      "name": "Josu Martinez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6097850?v=4",
+      "profile": "https://github.com/Josuto",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
